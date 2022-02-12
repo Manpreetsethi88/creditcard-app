@@ -20,17 +20,4 @@ public class CreditCardValidator {
 		}
 		return(nSum % 10 == 0);
 	}
-	
-	public static boolean validateCardDetails(CreditCardDetails creditCardDetails) {
-		boolean cardResult = true;
-		try {
-			if(creditCardDetails.getCardNumber().length() > 19 || Long.parseLong(creditCardDetails.getCardNumber()) < 0) {
-				cardResult = false;
-			}
-		} catch(NumberFormatException e) {
-			cardResult = false;
-		}
-		return cardResult;
-	}
-
 }

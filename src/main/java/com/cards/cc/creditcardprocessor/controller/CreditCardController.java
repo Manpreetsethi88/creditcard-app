@@ -35,7 +35,7 @@ public class CreditCardController {
 
         CreditCardDetails creditCardDetails = new CreditCardDetails(request);
         CreditCardGenericResponse ccGenericResponse = new CreditCardGenericResponse();
-        if (CreditCardValidator.luhnCheck(request.getCardNumber()) && CreditCardValidator.validateCardDetails(creditCardDetails)) {
+        if (CreditCardValidator.luhnCheck(request.getCardNumber())) {
             ccGenericResponse = creditCardService.saveCreditCardDetails(creditCardDetails);
         } else {
             ccGenericResponse.setCardNumber(request.getCardNumber());
