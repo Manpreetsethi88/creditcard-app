@@ -13,7 +13,7 @@ Technology Stack
 - SpringFox Swagger
 - SpringFox UI
 - Junit
-- Maven 3.5.3
+- Maven 4.0
 
 ### SpringFox Swagger
 ##### Swagger UI will be available on the following link:
