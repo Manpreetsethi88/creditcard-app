@@ -1,7 +1,7 @@
 A spring boot application that exposes 2 RestEndpoints to execute credit cart related operations i.e Add new cards and list all cards from a system.
 
-/addCard = adds a new Credit Card
-/getAllCards = List all the credit cards from the system
+-/addCard = adds a new Credit Card
+-/getAllCards = List all the credit cards from the system
 
 Technology Stack
 
