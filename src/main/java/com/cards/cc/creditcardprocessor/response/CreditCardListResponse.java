@@ -3,7 +3,9 @@ package com.cards.cc.creditcardprocessor.response;
 import java.util.List;
 
 import com.cards.cc.creditcardprocessor.model.CreditCardDetails;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreditCardListResponse {
 	
 	private List<CreditCardDetails> creditCards;

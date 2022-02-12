@@ -1,10 +1,12 @@
 package com.cards.cc.creditcardprocessor.params;
 
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class CreditCardRequestParam {
 	
-	@Pattern(message = "Credit Card Number must contain only digits", regexp="^[0-9]*$")
+	@Pattern(message = "Credit Card Number must contain only digits[0-9]", regexp="^[0-9]*$")
+	@Size(min = 0, max = 19 , message = "Credit Card Number must be between 0 and 19 digits long")
 	private String cardNumber;
 	
 	private String firstName;
