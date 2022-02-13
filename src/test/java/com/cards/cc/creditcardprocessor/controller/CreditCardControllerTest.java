@@ -56,31 +56,5 @@ public class CreditCardControllerTest {
         CreditCardGenericResponse response = creditCardController.addCard(ccRequest);
         assertEquals(ccGenericResponse, response);
 	}
-	
-	  @Test
-	  public void testAddCardPatternValidation() {
-		CreditCardRequestParam creditCardRequestParam = new CreditCardRequestParam();
-		creditCardRequestParam.setCardNumber("4111111111111111a");
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<CreditCardRequestParam>> constraintViolations = validator.validate(creditCardRequestParam);
-		assertEquals(constraintViolations.size(), 1);
-		ConstraintViolation<CreditCardRequestParam> violation = constraintViolations.iterator().next();
-		assertEquals("Credit Card Number must contain only digits[0-9]", violation.getMessage());
-		assertEquals("cardNumber", violation.getPropertyPath().toString());
-	  }
-	  
-	  @Test
-	  public void testAddCardLengthValidation() {
-		CreditCardRequestParam creditCardRequestParam = new CreditCardRequestParam();
-		creditCardRequestParam.setCardNumber("41111111111111114444");
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<CreditCardRequestParam>> constraintViolations = validator.validate(creditCardRequestParam);
-		assertEquals(constraintViolations.size(), 1);
-		ConstraintViolation<CreditCardRequestParam> violation = constraintViolations.iterator().next();
-		assertEquals("Credit Card Number must be between 0 and 19 digits long", violation.getMessage());
-		assertEquals("cardNumber", violation.getPropertyPath().toString());
-	  }
 
 }
