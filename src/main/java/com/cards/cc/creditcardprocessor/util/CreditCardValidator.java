@@ -1,7 +1,5 @@
 package com.cards.cc.creditcardprocessor.util;
 
-import com.cards.cc.creditcardprocessor.model.CreditCardDetails;
-
 public class CreditCardValidator {
 	
 	//Returns true if given card number is valid

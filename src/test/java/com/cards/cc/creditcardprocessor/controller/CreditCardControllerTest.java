@@ -18,9 +18,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.http.ResponseEntity;
 
 import com.cards.cc.creditcardprocessor.constants.CreditCardDetailsConstants;
-import com.cards.cc.creditcardprocessor.model.CreditCardDetails;
 import com.cards.cc.creditcardprocessor.params.CreditCardRequestParam;
 import com.cards.cc.creditcardprocessor.response.CreditCardGenericResponse;
 import com.cards.cc.creditcardprocessor.service.ICreditCardService;
@@ -41,7 +41,8 @@ public class CreditCardControllerTest {
 		ccRequest.setFirstName("Manpreet");
 		ccRequest.setLastName("Sethi");
 		
-		CreditCardGenericResponse ccGenericResponse = creditCardController.addCard(ccRequest);
+		ResponseEntity<CreditCardGenericResponse> response = creditCardController.addCard(ccRequest);
+		CreditCardGenericResponse ccGenericResponse = response.getBody();
 		assertEquals(CreditCardDetailsConstants.CARD_NUMBER_ERROR, ccGenericResponse.getErrors().getMessage());
 	}
 	
@@ -54,8 +55,8 @@ public class CreditCardControllerTest {
 		
 		CreditCardGenericResponse ccGenericResponse = mock(CreditCardGenericResponse.class);
         when(iCreditCardService.saveCreditCardDetails(Mockito.any())).thenReturn(ccGenericResponse);
-        CreditCardGenericResponse response = creditCardController.addCard(ccRequest);
-        assertEquals(ccGenericResponse, response);
+        ResponseEntity<CreditCardGenericResponse> response = creditCardController.addCard(ccRequest);
+        assertEquals(ccGenericResponse, response.getBody());
 	}
 	
 	@Test
@@ -87,6 +88,5 @@ public class CreditCardControllerTest {
 		assertEquals("must be between 0 and 19 digits long", violation.getMessage());
 		assertEquals("cardNumber", violation.getPropertyPath().toString());
 	  }
-
 
 }
