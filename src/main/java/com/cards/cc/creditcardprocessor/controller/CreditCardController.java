@@ -18,8 +18,10 @@ import com.cards.cc.creditcardprocessor.response.CreditCardListResponse;
 import com.cards.cc.creditcardprocessor.service.ICreditCardService;
 import com.cards.cc.creditcardprocessor.util.CreditCardValidator;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@Api(value = "CreditCardController", description = "REST APIs related to credit card operations")
 @RestController
 public class CreditCardController {
 	
