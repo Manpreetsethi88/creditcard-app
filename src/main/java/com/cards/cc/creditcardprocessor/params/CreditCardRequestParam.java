@@ -1,19 +1,25 @@
 package com.cards.cc.creditcardprocessor.params;
 
+import java.math.BigDecimal;
+
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class CreditCardRequestParam {
 	
-	@Pattern(message = "Credit Card Number must contain only digits[0-9]", regexp="^[0-9]*$")
-	@Size(min = 0, max = 19 , message = "Credit Card Number must be between 0 and 19 digits long")
+	@Pattern(message = "must contain only digits[0-9]", regexp="^[0-9]*$")
+	@Size(min = 0, max = 19 , message = "must be between 0 and 19 digits long")
+	@NotNull
 	private String cardNumber;
 	
+	@NotNull
 	private String firstName;
 	
 	private String lastName;
 	
-	private long limit;
+	@NotNull
+	private BigDecimal limit;
 
 	public String getCardNumber() {
 		return cardNumber;
@@ -39,11 +45,11 @@ public class CreditCardRequestParam {
 		this.lastName = lastName;
 	}
 
-	public long getLimit() {
+	public BigDecimal getLimit() {
 		return limit;
 	}
 
-	public void setLimit(long limit) {
+	public void setLimit(BigDecimal limit) {
 		this.limit = limit;
 	}
 

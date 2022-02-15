@@ -31,7 +31,7 @@ public class CreditCardServiceImplTest {
 	 @Test
 	 public void testAddCardSuccess() {
 		CreditCardDetails creditCardDetails = mock(CreditCardDetails.class);
-	 	when(creditCardDetails.getCardNumber()).thenReturn("4111111111111111");
+	 	when(creditCardDetails.getCardNumber()).thenReturn(EncryptionService.encrypt("4111111111111111"));
 	 	CreditCardGenericResponse ccGenericResponse = creditCardServiceImpl.saveCreditCardDetails(creditCardDetails);
 	 	assertNotNull(ccGenericResponse);
 	 }
@@ -39,7 +39,7 @@ public class CreditCardServiceImplTest {
 	  @Test
 	  public void testAddCardDuplicate() {
 		CreditCardDetails creditCardDetails = mock(CreditCardDetails.class);
-		when(creditCardDetails.getCardNumber()).thenReturn("5105105105105100");
+		when(creditCardDetails.getCardNumber()).thenReturn(EncryptionService.encrypt("5105105105105100"));
 		when(creditCardDetailsDAO.addCardDetails(creditCardDetails)).thenThrow(DuplicateKeyException.class);
 		CreditCardGenericResponse ccGenericResponse = creditCardServiceImpl.saveCreditCardDetails(creditCardDetails);
 		assertEquals(CreditCardDetailsConstants.CARD_ALREADY_EXIST, ccGenericResponse.getErrors().getMessage());

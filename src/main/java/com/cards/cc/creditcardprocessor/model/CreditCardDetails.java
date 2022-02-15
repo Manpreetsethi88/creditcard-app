@@ -1,6 +1,9 @@
 package com.cards.cc.creditcardprocessor.model;
 
+import java.math.BigDecimal;
+
 import com.cards.cc.creditcardprocessor.params.CreditCardRequestParam;
+import com.cards.cc.creditcardprocessor.service.EncryptionService;
 
 public class CreditCardDetails {
 	
@@ -10,24 +13,28 @@ public class CreditCardDetails {
 	
 	private String lastName;
 	
-	private long creditLimit;
-
-	public String getCardNumber() {
-		return cardNumber;
+	private BigDecimal creditLimit;
+	
+	public CreditCardDetails() {
+		
 	}
 	
 	public CreditCardDetails(CreditCardRequestParam params) {
-		this.cardNumber = params.getCardNumber();
+		this.cardNumber = EncryptionService.encrypt(params.getCardNumber());
 		this.firstName = params.getFirstName();
 		this.lastName = params.getLastName();
 		this.creditLimit = params.getLimit();
 	}
 	
-	public CreditCardDetails(String cardNumber, String firstName, String lastName, Long creditLimit) {
-		this.cardNumber = cardNumber;
+	public CreditCardDetails(String cardNumber, String firstName, String lastName, BigDecimal creditLimit) {
+		this.cardNumber = EncryptionService.decrypt(cardNumber);
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.creditLimit = creditLimit;
+	}
+	
+	public String getCardNumber() {
+		return cardNumber;
 	}
 
 	public void setCardNumber(String cardNumber) {
@@ -50,11 +57,11 @@ public class CreditCardDetails {
 		this.lastName = lastName;
 	}
 
-	public long getCreditLimit() {
+	public BigDecimal getCreditLimit() {
 		return creditLimit;
 	}
 
-	public void setCreditLimit(long creditLimit) {
+	public void setCreditLimit(BigDecimal creditLimit) {
 		this.creditLimit = creditLimit;
 	}
 

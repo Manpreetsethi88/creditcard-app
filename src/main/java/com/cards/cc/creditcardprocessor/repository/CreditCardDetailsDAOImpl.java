@@ -32,7 +32,7 @@ public class CreditCardDetailsDAOImpl implements CreditCardDetailsDAO {
 									 rs.getString("CREDIT_CARD_NO"),
 									 rs.getString("FIRST_NAME"),
 									 rs.getString("LAST_NAME"),
-									 rs.getLong("CREDIT_LIMIT")
+									 rs.getBigDecimal("CREDIT_LIMIT")
 							));
 	}
 

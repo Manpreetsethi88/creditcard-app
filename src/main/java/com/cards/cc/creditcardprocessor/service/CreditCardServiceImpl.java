@@ -22,7 +22,7 @@ public class CreditCardServiceImpl implements ICreditCardService {
 		
 	public CreditCardGenericResponse saveCreditCardDetails(CreditCardDetails creditCardDetails) {
 		CreditCardGenericResponse ccGenericResponse = new CreditCardGenericResponse();
-		ccGenericResponse.setCardNumber(creditCardDetails.getCardNumber());
+		ccGenericResponse.setCardNumber(EncryptionService.decrypt(creditCardDetails.getCardNumber()));
 		try {
 			creditCardDetailsDAO.addCardDetails(creditCardDetails);
 		} catch (DuplicateKeyException e) {
@@ -51,4 +51,3 @@ public class CreditCardServiceImpl implements ICreditCardService {
 	}
 
 }
-

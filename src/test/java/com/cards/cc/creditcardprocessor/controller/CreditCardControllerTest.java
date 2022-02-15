@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -61,12 +62,14 @@ public class CreditCardControllerTest {
 	  public void testAddCardPatternValidation() {
 		CreditCardRequestParam creditCardRequestParam = new CreditCardRequestParam();
 		creditCardRequestParam.setCardNumber("4111111111111111a");
+		creditCardRequestParam.setFirstName("Manpreet");
+		creditCardRequestParam.setLimit(new BigDecimal(4500.02));
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<CreditCardRequestParam>> constraintViolations = validator.validate(creditCardRequestParam);
 		assertEquals(constraintViolations.size(), 1);
 		ConstraintViolation<CreditCardRequestParam> violation = constraintViolations.iterator().next();
-		assertEquals("Credit Card Number must contain only digits[0-9]", violation.getMessage());
+		assertEquals("must contain only digits[0-9]", violation.getMessage());
 		assertEquals("cardNumber", violation.getPropertyPath().toString());
 	  }
 	  
@@ -74,12 +77,14 @@ public class CreditCardControllerTest {
 	  public void testAddCardLengthValidation() {
 		CreditCardRequestParam creditCardRequestParam = new CreditCardRequestParam();
 		creditCardRequestParam.setCardNumber("41111111111111114444");
+		creditCardRequestParam.setFirstName("Manpreet");
+		creditCardRequestParam.setLimit(new BigDecimal(10000.56));
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<CreditCardRequestParam>> constraintViolations = validator.validate(creditCardRequestParam);
 		assertEquals(constraintViolations.size(), 1);
 		ConstraintViolation<CreditCardRequestParam> violation = constraintViolations.iterator().next();
-		assertEquals("Credit Card Number must be between 0 and 19 digits long", violation.getMessage());
+		assertEquals("must be between 0 and 19 digits long", violation.getMessage());
 		assertEquals("cardNumber", violation.getPropertyPath().toString());
 	  }
 
