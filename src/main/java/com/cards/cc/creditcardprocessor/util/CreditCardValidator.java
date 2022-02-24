@@ -1,9 +1,17 @@
 package com.cards.cc.creditcardprocessor.util;
 
-public class CreditCardValidator {
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+public class CreditCardValidator  implements ConstraintValidator<LuhnValidation, String>{
+	
+	public boolean isValid(String cardNumber, ConstraintValidatorContext context) {
+		return luhnCheck(cardNumber);
+	}
 	
 	//Returns true if given card number is valid
 	public static boolean luhnCheck(String cardNo) {
+        
 		int nDigits = cardNo.length();
 		int nSum = 0;
 		boolean isSecond = false;

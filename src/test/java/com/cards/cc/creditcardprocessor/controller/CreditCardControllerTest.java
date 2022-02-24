@@ -83,7 +83,7 @@ public class CreditCardControllerTest {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<CreditCardRequestParam>> constraintViolations = validator.validate(creditCardRequestParam);
-		assertEquals(constraintViolations.size(), 1);
+		assertEquals(constraintViolations.size(), 2);
 		ConstraintViolation<CreditCardRequestParam> violation = constraintViolations.iterator().next();
 		assertEquals("must be between 0 and 19 digits long", violation.getMessage());
 		assertEquals("cardNumber", violation.getPropertyPath().toString());
