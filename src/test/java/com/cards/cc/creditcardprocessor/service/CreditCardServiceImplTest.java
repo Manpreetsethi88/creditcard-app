@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.cards.cc.creditcardprocessor.model.CreditCardDetails;
+import com.cards.cc.creditcardprocessor.params.CreditCardRequestParam;
 import com.cards.cc.creditcardprocessor.repository.CreditCardDetailsDAO;
 import com.cards.cc.creditcardprocessor.response.CreditCardGenericResponse;
 import com.cards.cc.creditcardprocessor.response.CreditCardListResponse;
@@ -27,9 +27,9 @@ public class CreditCardServiceImplTest {
 	
 	 @Test
 	 public void testAddCardSuccess() {
-		CreditCardDetails creditCardDetails = mock(CreditCardDetails.class);
-	 	when(creditCardDetails.getCardNumber()).thenReturn(EncryptionService.encrypt("4111111111111111"));
-	 	CreditCardGenericResponse ccGenericResponse = creditCardServiceImpl.saveCreditCardDetails(creditCardDetails);
+		CreditCardRequestParam creditCardParams = mock(CreditCardRequestParam.class);
+	 	when(creditCardParams.getCardNumber()).thenReturn(EncryptionService.encrypt("4111111111111111"));
+	 	CreditCardGenericResponse ccGenericResponse = creditCardServiceImpl.saveCreditCardDetails(creditCardParams);
 	 	assertNotNull(ccGenericResponse);
 	 }
 	  

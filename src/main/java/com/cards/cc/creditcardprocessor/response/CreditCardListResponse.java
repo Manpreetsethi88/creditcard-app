@@ -2,21 +2,21 @@ package com.cards.cc.creditcardprocessor.response;
 
 import java.util.List;
 
-import com.cards.cc.creditcardprocessor.model.CreditCardDetails;
+import com.cards.cc.creditcardprocessor.params.CreditCardRequestParam;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CreditCardListResponse {
 	
-	private List<CreditCardDetails> creditCards;
+	private List<CreditCardRequestParam> creditCards;
 	
 	private CreditCardErrorResponse errors;
 
-	public List<CreditCardDetails> getCreditCards() {
+	public List<CreditCardRequestParam> getCreditCards() {
 		return creditCards;
 	}
 
-	public void setCreditCards(List<CreditCardDetails> creditCards) {
+	public void setCreditCards(List<CreditCardRequestParam> creditCards) {
 		this.creditCards = creditCards;
 	}
 

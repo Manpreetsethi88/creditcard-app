@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.cards.cc.creditcardprocessor.model.CreditCardDetails;
 import com.cards.cc.creditcardprocessor.util.LuhnValidation;
 
 import io.swagger.annotations.ApiModel;
@@ -32,6 +33,16 @@ public class CreditCardRequestParam {
 	@NotNull
 	@ApiModelProperty(notes = "Credit Card Limit Credit Card Holder", name="limit", required=true, value="0.0")
 	private BigDecimal limit;
+	
+	public CreditCardRequestParam() {
+		
+	}
+	public CreditCardRequestParam(CreditCardDetails details) {
+		this.cardNumber = details.getCardNumber();
+		this.firstName = details.getFirstName();
+		this.lastName = details.getLastName();
+		this.limit = details.getCreditLimit();
+	}
 
 	public String getCardNumber() {
 		return cardNumber;

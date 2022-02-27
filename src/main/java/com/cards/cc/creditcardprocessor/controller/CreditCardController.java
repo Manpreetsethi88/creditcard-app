@@ -2,7 +2,7 @@ package com.cards.cc.creditcardprocessor.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;	
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cards.cc.creditcardprocessor.model.CreditCardDetails;
 import com.cards.cc.creditcardprocessor.params.CreditCardRequestParam;
 import com.cards.cc.creditcardprocessor.response.CreditCardErrorResponse;
 import com.cards.cc.creditcardprocessor.response.CreditCardGenericResponse;
@@ -41,8 +40,7 @@ public class CreditCardController {
             @ApiResponse(message = "Internal Server Error", code = 500, response = CreditCardErrorResponse.class)})
     public ResponseEntity<CreditCardGenericResponse> addCard( @Valid @RequestBody CreditCardRequestParam request) {
 		CreditCardGenericResponse ccGenericResponse = new CreditCardGenericResponse();
-		CreditCardDetails creditCardDetails = new CreditCardDetails(request);
-		ccGenericResponse = creditCardService.saveCreditCardDetails(creditCardDetails);
+		ccGenericResponse = creditCardService.saveCreditCardDetails(request);
 		return new ResponseEntity<>(ccGenericResponse, HttpStatus.OK);
     }
 	
